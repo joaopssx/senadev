@@ -14,7 +14,7 @@ git log --all -- .env
 Create an empty repository on GitHub, then:
 
 ```bash
-git remote add origin https://github.com/joaopssx/senadev-site.git
+git remote add origin https://github.com/joaopssx/senadev.git
 git push -u origin main
 ```
 
