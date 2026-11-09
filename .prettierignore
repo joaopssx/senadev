@@ -1,0 +1,7 @@
+node_modules
+dist
+.wrangler
+assets-private
+package-lock.json
+public/fonts
+src/data/dots.json
