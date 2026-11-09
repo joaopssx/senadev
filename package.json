@@ -19,6 +19,7 @@
     "@commitlint/config-conventional": "21.2.4",
     "@eslint/js": "10.0.1",
     "@types/node": "26.6.6",
+    "@types/three": "0.187.0",
     "eslint": "10.14.0",
     "husky": "9.1.7",
     "lint-staged": "17.6.0",
@@ -36,5 +37,8 @@
       "prettier --write"
     ],
     "*.{json,md,yml,yaml,css,html}": "prettier --write"
+  },
+  "dependencies": {
+    "three": "0.187.0"
   }
 }
