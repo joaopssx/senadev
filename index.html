@@ -222,12 +222,12 @@
         </div>
       </section>
 
-      <section class="section" id="skills">
+      <section class="section section--orbs" id="skills">
         <p class="outline-word" aria-hidden="true" data-i18n="skills.word">SKILLS</p>
         <div class="section__inner">
           <h2 class="section__title" data-i18n="skills.title">What I work with</h2>
           <div class="skills__grid">
-            <div>
+            <div class="glass skills__panel">
               <h3 class="skills__heading" data-i18n="skills.languages">Languages</h3>
               <ul class="tags">
                 <li>C++</li>
@@ -253,14 +253,14 @@
         </div>
       </section>
 
-      <section class="section" id="projects">
+      <section class="section section--orbs" id="projects">
         <p class="outline-word" aria-hidden="true" data-i18n="projects.word">PROJECTS</p>
         <div class="section__inner">
           <h2 class="section__title" data-i18n="projects.title">What I build</h2>
-          <div class="projects__grid" aria-hidden="true">
-            <div class="skeleton"></div>
-            <div class="skeleton"></div>
-            <div class="skeleton"></div>
+          <div class="projects__grid" aria-busy="true">
+            <div class="skeleton glass"></div>
+            <div class="skeleton glass"></div>
+            <div class="skeleton glass"></div>
           </div>
           <a
             class="pill"
@@ -276,7 +276,7 @@
         </div>
       </section>
 
-      <section class="section" id="guestbook">
+      <section class="section section--orbs" id="guestbook">
         <p class="outline-word" aria-hidden="true" data-i18n="guestbook.word">GUESTBOOK</p>
         <div class="section__inner guestbook__grid">
           <form>
@@ -286,7 +286,7 @@
                 <label for="gb-name" data-i18n="guestbook.name">Name</label>
                 <span class="field__count">0/30</span>
               </div>
-              <input class="field__input" id="gb-name" name="name" maxlength="30" required />
+              <input class="field__input glass" id="gb-name" name="name" maxlength="30" required />
             </div>
             <div class="field">
               <div class="field__head">
@@ -294,7 +294,7 @@
                 <span class="field__count">0/200</span>
               </div>
               <textarea
-                class="field__input"
+                class="field__input glass"
                 id="gb-message"
                 name="message"
                 maxlength="200"

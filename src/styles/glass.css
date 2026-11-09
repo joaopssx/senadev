@@ -1,0 +1,107 @@
+.glass {
+  background: linear-gradient(135deg, var(--glass-light), var(--glass-dark));
+  border: 1px solid var(--glass-edge);
+  border-top-color: var(--glass-edge-lit);
+  border-radius: var(--radius-md);
+  box-shadow:
+    var(--shadow-raised),
+    inset 0 1px 0 var(--glass-edge);
+  backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+}
+
+/* Frosted glass needs something behind it, and these sections have no 3D blob. */
+.section--orbs::before,
+.section--orbs::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 32% 28%,
+    var(--purple-400),
+    var(--purple-600) 42%,
+    var(--glow) 100%
+  );
+  box-shadow: 0 30px 80px rgb(124 58 237 / 30%);
+}
+
+.section--orbs::before {
+  top: var(--orb-a-top);
+  left: var(--orb-a-left);
+  width: var(--orb-a-size);
+}
+
+.section--orbs::after {
+  top: var(--orb-b-top);
+  left: var(--orb-b-left);
+  width: var(--orb-b-size);
+}
+
+#skills {
+  --orb-a-top: 30%;
+  --orb-a-left: 4%;
+  --orb-a-size: clamp(7rem, 16vw, 15rem);
+  --orb-b-top: 58%;
+  --orb-b-left: 38%;
+  --orb-b-size: clamp(5rem, 9vw, 9rem);
+}
+
+#projects {
+  --orb-a-top: 26%;
+  --orb-a-left: 62%;
+  --orb-a-size: clamp(8rem, 20vw, 19rem);
+  --orb-b-top: 48%;
+  --orb-b-left: 12%;
+  --orb-b-size: clamp(6rem, 12vw, 11rem);
+}
+
+#guestbook {
+  --orb-a-top: 24%;
+  --orb-a-left: 26%;
+  --orb-a-size: clamp(7rem, 15vw, 14rem);
+  --orb-b-top: 58%;
+  --orb-b-left: 2%;
+  --orb-b-size: clamp(6rem, 11vw, 10rem);
+}
+
+.skills__panel {
+  padding: var(--space-6);
+}
+
+.skeleton {
+  height: 11rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.project-card__name {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.project-card__description {
+  flex: 1;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.project-card__tech {
+  color: var(--purple-400);
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.project-card__link {
+  width: fit-content;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration-color: var(--magenta);
+  text-underline-offset: 0.3em;
+}

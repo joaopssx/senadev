@@ -20,9 +20,6 @@
   display: block;
   width: 100%;
   padding: var(--space-3) var(--space-4);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
   transition: border-color var(--duration-fast);
 }
 
