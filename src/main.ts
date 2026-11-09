@@ -1,1 +1,3 @@
-document.documentElement.classList.add('js')
+import { initNav } from './features/nav'
+
+initNav()
