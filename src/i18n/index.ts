@@ -41,6 +41,8 @@ function saveLocale(value: Locale): void {
 
 function applyTranslations(): void {
   document.documentElement.lang = htmlLang[locale]
+  document.title = t('meta.title')
+  document.querySelector('meta[name="description"]')?.setAttribute('content', t('meta.description'))
   for (const element of document.querySelectorAll('[data-i18n]')) {
     element.textContent = t(element.getAttribute('data-i18n') as TranslationKey)
   }

@@ -76,6 +76,10 @@ export const en = {
 
   'contact.word': 'CONTACT',
   'contact.title': 'Get in touch',
+  'meta.title': 'João Pedro | Backend and game developer',
+  'meta.description':
+    'Portfolio of João Pedro, a backend developer, game developer and modder from Brazil.',
+  'contact.copied': 'Copied!',
   'contact.copy': 'Copy',
 
   'footer.made': 'Made in Brazil',

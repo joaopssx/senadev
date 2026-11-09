@@ -80,6 +80,10 @@ export const pt: Record<TranslationKey, string> = {
 
   'contact.word': 'CONTATO',
   'contact.title': 'Fale comigo',
+  'meta.title': 'João Pedro | Desenvolvedor backend e de jogos',
+  'meta.description':
+    'Portfólio de João Pedro, desenvolvedor backend, de jogos e modder, do Brasil.',
+  'contact.copied': 'Copiado!',
   'contact.copy': 'Copiar',
 
   'footer.made': 'Feito no Brasil',
