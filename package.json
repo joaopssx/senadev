@@ -10,16 +10,29 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "prepare": "husky",
+    "dots": "node scripts/make-dots.ts"
   },
   "devDependencies": {
+    "@commitlint/cli": "21.2.4",
+    "@commitlint/config-conventional": "21.2.4",
     "@eslint/js": "10.0.1",
     "eslint": "10.14.0",
+    "husky": "9.1.7",
+    "lint-staged": "17.6.0",
     "prettier": "3.9.10",
     "typescript": "6.0.3",
     "typescript-eslint": "8.72.1",
     "vite": "8.3.7",
     "vitest": "5.1.0",
     "wrangler": "4.159.0"
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml,css,html}": "prettier --write"
   }
 }

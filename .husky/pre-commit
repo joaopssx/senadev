@@ -1,0 +1,11 @@
+blocked=$(git diff --cached --name-only --diff-filter=ACMR \
+  | grep -E '(^|/)(\.env(\..+)?|\.dev\.vars(\..+)?)$|^assets-private/' \
+  | grep -vE '\.example$' || true)
+
+if [ -n "$blocked" ]; then
+  echo "Commit blocked, these files must stay private:"
+  echo "$blocked"
+  exit 1
+fi
+
+npx lint-staged
