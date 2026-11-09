@@ -6,21 +6,15 @@ The page is mostly static content and a few independent widgets, and there is li
 
 Trade-off: if the site grew into an app with lots of shared state, this would need revisiting.
 
-## Cloudflare Pages instead of Workers with static assets
+## Everything on Vercel
 
-Cloudflare's new features are going to Workers, and Workers has more of them. This site needs none of those, while Pages gives file-based routes in `functions/` and simple Git deploys. Moving later means writing a small router for two endpoints.
+Site, Functions and database live on one platform with one deploy, one set of environment variables and Git previews.
 
-## Site on Vercel, API on Cloudflare
+Trade-off: Turnstile is still a Cloudflare service, because it is a standalone captcha that works on any host.
 
-Vercel hosts the static site. The guestbook depends on D1, which only binds to Cloudflare, so the Functions stay on Pages and Vercel forwards `/api/*` to them. The browser sees one origin, so no CORS is needed.
+## Neon Postgres for the guestbook
 
-Trade-off: two platforms to manage, and a shared secret is needed to pass the visitor IP safely.
-
-## D1 for the guestbook
-
-The data is one small table and needs simple queries, ordering and an atomic limit. D1 is SQLite with SQL migrations, and it binds directly to Functions with no connection strings or separate service.
-
-Trade-off: it ties the backend to Cloudflare. The SQL itself is ordinary SQLite.
+The data is one small table and needs simple queries, ordering and a reliable limit. Neon speaks over HTTP, which fits short-lived Functions, and connects through the Vercel Marketplace.
 
 ## Turnstile as the captcha
 
@@ -32,9 +26,9 @@ The hourly limit only needs to know whether two requests came from the same visi
 
 A salted hash is still pseudonymous data, not anonymous data, so each new message also clears hashes older than the one-hour window.
 
-## Rate limit inside the INSERT
+## Rate limit with a lock per visitor
 
-A separate count followed by an insert would let simultaneous requests pass the limit. A single statement avoids that with no extra locking.
+Postgres runs concurrent statements side by side, so two requests could both see a count below the limit. An advisory lock on the IP hash makes requests from the same visitor run one at a time, in the same transaction as the insert.
 
 ## Portrait generated at build time
 

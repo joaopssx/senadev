@@ -6,16 +6,16 @@ Personal portfolio of João Pedro de Sena Santana. It has 3D liquid blobs, a por
 
 ## Stack
 
-| Part      | Choice                             | Why                                                |
-| --------- | ---------------------------------- | -------------------------------------------------- |
-| Frontend  | Vite and plain TypeScript          | Six sections don't need a framework runtime        |
-| 3D        | Three.js, loaded after the content | Real lighting without delaying the first paint     |
-| Portrait  | Canvas 2D                          | Thousands of sprites, no library needed            |
-| Hosting   | Vercel                             | Serves the site and forwards `/api` to Cloudflare  |
-| Backend   | Cloudflare Pages Functions         | Same origin as the site, no server to maintain     |
-| Database  | Cloudflare D1                      | SQLite with a free tier that fits a guestbook      |
-| Anti-spam | Cloudflare Turnstile, honeypot     | No tracking cookies or image puzzles for visitors  |
-| Tests     | Vitest                             | Covers age, dates, guestbook validation, i18n keys |
+| Part      | Choice                             | Why                                                   |
+| --------- | ---------------------------------- | ----------------------------------------------------- |
+| Frontend  | Vite and plain TypeScript          | Six sections don't need a framework runtime           |
+| 3D        | Three.js, loaded after the content | Real lighting without delaying the first paint        |
+| Portrait  | Canvas 2D                          | Thousands of sprites, no library needed               |
+| Hosting   | Vercel                             | Site, API and database in one place                   |
+| Backend   | Vercel Functions                   | Same origin as the site, no server to maintain        |
+| Database  | Neon Postgres                      | Serverless SQL with a free tier that fits a guestbook |
+| Anti-spam | Cloudflare Turnstile, honeypot     | No tracking cookies or image puzzles for visitors     |
+| Tests     | Vitest                             | Covers age, dates, guestbook validation, i18n keys    |
 
 The reasoning behind each choice is in [docs/DECISIONS.md](docs/DECISIONS.md).
 
@@ -25,11 +25,8 @@ You need the Node version in `.nvmrc`.
 
 ```bash
 npm ci
-cp .env.example .env
-cp .dev.vars.example .dev.vars
+cp .env.example .env.local
 ```
-
-Fill both files using the test keys described in their comments, and any random string for `IP_HASH_SALT`.
 
 Frontend only, with the fallback project list and no guestbook backend:
 
@@ -37,12 +34,12 @@ Frontend only, with the fallback project list and no guestbook backend:
 npm run dev
 ```
 
-Full site with Functions and a local database, at `http://localhost:8788`:
+The full site with the API runs through the Vercel CLI and needs a linked project with a database:
 
 ```bash
-npx wrangler d1 migrations apply senadev-guestbook --local
-npm run build
-npx wrangler pages dev dist
+npx vercel link
+npx vercel env pull .env.local
+npx vercel dev
 ```
 
 ## Scripts
@@ -61,7 +58,7 @@ npx wrangler pages dev dist
 ## Structure
 
 ```
-functions/api/      guestbook and GitHub repos endpoints
+api/                guestbook and GitHub repos endpoints
 migrations/         database schema
 public/             fonts, security headers, SEO files
 scripts/            portrait generator
@@ -76,15 +73,15 @@ docs/               architecture, decisions, deploy guide
 
 ## Environment variables
 
-| Name                      | Where       | Purpose                                               |
-| ------------------------- | ----------- | ----------------------------------------------------- |
-| `VITE_TURNSTILE_SITE_KEY` | `.env`      | Public Turnstile key, used at build                   |
-| `TURNSTILE_SECRET_KEY`    | `.dev.vars` | Verifies Turnstile tokens on the server               |
-| `IP_HASH_SALT`            | `.dev.vars` | Salt for hashing visitor IPs                          |
-| `ORIGIN_SECRET`           | `.dev.vars` | Lets the API trust the visitor IP forwarded by Vercel |
-| `GITHUB_TOKEN`            | `.dev.vars` | Optional, raises the GitHub API limit                 |
+| Name                      | Purpose                                          |
+| ------------------------- | ------------------------------------------------ |
+| `VITE_TURNSTILE_SITE_KEY` | Public Turnstile key, used at build              |
+| `TURNSTILE_SECRET_KEY`    | Verifies Turnstile tokens on the server          |
+| `IP_HASH_SALT`            | Salt for hashing visitor IPs                     |
+| `DATABASE_URL`            | Neon connection, added by the Vercel integration |
+| `GITHUB_TOKEN`            | Optional, raises the GitHub API limit            |
 
-`.env` and `.dev.vars` are ignored by Git. In production these values live in the Vercel and Cloudflare dashboards.
+Local values go in `.env.local`, which Git ignores. In production they live in the Vercel dashboard.
 
 ## Deploy
 

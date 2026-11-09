@@ -1,17 +1,13 @@
 # Architecture
 
-A static site built by Vite and served by Vercel. Requests to `/api/*` are forwarded to two Cloudflare Pages Functions, so the browser still sees one origin.
+A static site built by Vite plus two Vercel Functions on the same origin.
 
 ```
 Browser
-  |- static files (HTML, CSS, JS, fonts) -> Vercel
+  |- static files (HTML, CSS, JS, fonts) -> Vercel CDN
   |- GET /api/repos                      -> Function -> GitHub API (cached 1 hour)
-  |- GET, POST /api/guestbook            -> Function -> Turnstile, D1
+  |- GET, POST /api/guestbook            -> Function -> Turnstile, Neon Postgres
 ```
-
-## Visitor IP behind the proxy
-
-Behind the rewrite, Cloudflare sees Vercel as the client. Vercel sends the visitor address in `x-real-ip` and adds a shared secret in `x-origin-secret`. The Function only trusts `x-real-ip` when that secret matches, so a direct call to `pages.dev` cannot fake an address.
 
 ## Loading order
 
@@ -31,12 +27,12 @@ The HTML holds all the content in English, so the page is readable before any sc
 
 1. The visitor scrolls near the section. The list loads and the Turnstile script is added.
 2. On submit, the browser posts the name, message, honeypot field and Turnstile token.
-3. `functions/api/guestbook.ts` handles the request in this order:
+3. `api/guestbook.ts` handles the request in this order:
    - accepts only JSON up to 4 KB
    - validates and normalizes the fields (`_lib/validate.ts`)
    - verifies the token with Turnstile (`_lib/turnstile.ts`)
    - hashes the IP with SHA-256 and a secret salt (`_lib/hash-ip.ts`)
-   - runs one `INSERT` that only writes if the visitor sent fewer than 3 messages in the last hour
+   - runs one transaction that takes a lock per visitor and only writes if they sent fewer than 3 messages in the last hour
 4. After a successful insert, hashes older than one hour are cleared.
 5. The server sets `created_at` in UTC. The browser displays it in the Sao Paulo time zone.
 
