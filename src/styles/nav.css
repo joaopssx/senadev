@@ -86,6 +86,15 @@
   cursor: pointer;
 }
 
+.nav__lang span {
+  color: var(--text-muted);
+}
+
+html[lang='en'] .nav__lang-en,
+html[lang='pt-BR'] .nav__lang-pt {
+  color: var(--text);
+}
+
 .nav__toggle {
   display: none;
   place-items: center;

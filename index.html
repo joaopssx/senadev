@@ -46,34 +46,75 @@
       <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" /></symbol>
     </svg>
 
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
     <header class="nav">
       <a class="nav__logo" href="#home"><span class="nav__logo-mark"></span>SENADEV</a>
       <ul class="nav__links" id="nav-menu" popover>
-        <li><a class="nav__link" href="#home">Home</a></li>
-        <li><a class="nav__link" href="#about">About</a></li>
-        <li><a class="nav__link" href="#skills">Skills</a></li>
-        <li><a class="nav__link" href="#projects">Projects</a></li>
-        <li><a class="nav__link" href="#guestbook">Guestbook</a></li>
-        <li><a class="nav__link" href="#contact">Contact</a></li>
+        <li><a class="nav__link" href="#home" data-i18n="nav.home">Home</a></li>
+        <li><a class="nav__link" href="#about" data-i18n="nav.about">About</a></li>
+        <li><a class="nav__link" href="#skills" data-i18n="nav.skills">Skills</a></li>
+        <li><a class="nav__link" href="#projects" data-i18n="nav.projects">Projects</a></li>
+        <li><a class="nav__link" href="#guestbook" data-i18n="nav.guestbook">Guestbook</a></li>
+        <li><a class="nav__link" href="#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
       <div class="nav__tools">
-        <button class="nav__lang" type="button" aria-label="Change language">EN | PT</button>
-        <button class="nav__toggle" type="button" popovertarget="nav-menu" aria-label="Menu">
+        <button
+          class="nav__lang"
+          type="button"
+          aria-label="Switch to Portuguese"
+          data-i18n-label="nav.language"
+        >
+          <span class="nav__lang-en">EN</span> | <span class="nav__lang-pt">PT</span>
+        </button>
+        <button
+          class="nav__toggle"
+          type="button"
+          popovertarget="nav-menu"
+          aria-label="Menu"
+          data-i18n-label="nav.menu"
+        >
           <svg class="icon" aria-hidden="true"><use href="#i-menu" /></svg>
         </button>
       </div>
     </header>
 
-    <nav class="rail" aria-label="Sections">
+    <nav class="rail" aria-label="Sections" data-i18n-label="nav.sections">
       <ol>
-        <li><a class="rail__link" href="#home" aria-label="Home">01</a></li>
-        <li><a class="rail__link" href="#about" aria-label="About">02</a></li>
-        <li><a class="rail__link" href="#skills" aria-label="Skills">03</a></li>
-        <li><a class="rail__link" href="#projects" aria-label="Projects">04</a></li>
-        <li><a class="rail__link" href="#guestbook" aria-label="Guestbook">05</a></li>
-        <li><a class="rail__link" href="#contact" aria-label="Contact">06</a></li>
+        <li>
+          <a class="rail__link" href="#home" aria-label="Home" data-i18n-label="nav.home">01</a>
+        </li>
+        <li>
+          <a class="rail__link" href="#about" aria-label="About" data-i18n-label="nav.about">02</a>
+        </li>
+        <li>
+          <a class="rail__link" href="#skills" aria-label="Skills" data-i18n-label="nav.skills"
+            >03</a
+          >
+        </li>
+        <li>
+          <a
+            class="rail__link"
+            href="#projects"
+            aria-label="Projects"
+            data-i18n-label="nav.projects"
+            >04</a
+          >
+        </li>
+        <li>
+          <a
+            class="rail__link"
+            href="#guestbook"
+            aria-label="Guestbook"
+            data-i18n-label="nav.guestbook"
+            >05</a
+          >
+        </li>
+        <li>
+          <a class="rail__link" href="#contact" aria-label="Contact" data-i18n-label="nav.contact"
+            >06</a
+          >
+        </li>
       </ol>
     </nav>
 
@@ -81,18 +122,20 @@
       <section class="section hero" id="home">
         <div class="blob-fallback blob-fallback--hero" aria-hidden="true"></div>
         <div class="hero__content">
-          <p class="hero__intro">I AM</p>
+          <p class="hero__intro" data-i18n="hero.intro">I AM</p>
           <h1 class="hero__name">JOÃO PEDRO</h1>
-          <p class="hero__tagline">Backend developer, game developer and modder from Brazil.</p>
+          <p class="hero__tagline" data-i18n="hero.tagline">
+            Backend developer, game developer and modder from Brazil.
+          </p>
           <div class="hero__actions">
             <a class="pill" href="#projects">
-              View projects
+              <span data-i18n="hero.viewProjects">View projects</span>
               <span class="pill__icon">
                 <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
               </span>
             </a>
             <a class="pill" href="#contact">
-              Contact me
+              <span data-i18n="hero.contactMe">Contact me</span>
               <span class="pill__icon">
                 <svg class="icon" aria-hidden="true"><use href="#i-mail" /></svg>
               </span>
@@ -123,13 +166,18 @@
               ><svg class="icon" aria-hidden="true"><use href="#i-instagram" /></svg
             ></a>
           </div>
-          <a class="scroll-cue" href="#about" aria-label="Scroll to About">
+          <a
+            class="scroll-cue"
+            href="#about"
+            aria-label="Scroll to About"
+            data-i18n-label="hero.scrollLabel"
+          >
             <svg class="scroll-cue__ring" viewBox="0 0 100 100" aria-hidden="true">
               <defs>
                 <path id="scroll-ring" d="M50 12a38 38 0 1 1-.01 0" />
               </defs>
               <text>
-                <textPath href="#scroll-ring" textLength="236">
+                <textPath href="#scroll-ring" textLength="236" data-i18n="hero.scrollRing">
                   SCROLL TO EXPLORE - SCROLL TO EXPLORE -
                 </textPath>
               </text>
@@ -141,12 +189,19 @@
 
       <section class="section" id="about">
         <div class="blob-fallback blob-fallback--about" aria-hidden="true"></div>
-        <p class="outline-word outline-word--end" aria-hidden="true">ABOUT</p>
+        <p class="outline-word outline-word--end" aria-hidden="true" data-i18n="about.word">
+          ABOUT
+        </p>
         <div class="section__inner about__grid">
-          <div class="portrait" role="img" aria-label="Dot-art portrait of João Pedro"></div>
+          <div
+            class="portrait"
+            role="img"
+            aria-label="Dot-art portrait of João Pedro"
+            data-i18n-label="about.portrait"
+          ></div>
           <div>
-            <h2 class="section__title">Who am I</h2>
-            <p class="about__text">
+            <h2 class="section__title" data-i18n="about.title">Who am I</h2>
+            <p class="about__text" data-i18n="about.text">
               I'm João Pedro de Sena Santana, a 20-year-old developer from Brazil. I work as a
               backend developer, game developer and modder, and I use AI as part of my workflow. I
               code in C++, Rust, TypeScript/JavaScript, Go, Python, Java, C# (Unity) and COBOL. I'm
@@ -154,24 +209,24 @@
             </p>
             <p class="about__age">20 years, 10 months, 29 days</p>
             <ul class="facts">
-              <li>Brazil</li>
-              <li>Backend</li>
-              <li>Game development</li>
-              <li>Modding</li>
-              <li>AI in my workflow</li>
-              <li>Autistic, Level 1</li>
+              <li data-i18n="about.fact.brazil">Brazil</li>
+              <li data-i18n="about.fact.backend">Backend</li>
+              <li data-i18n="about.fact.gamedev">Game development</li>
+              <li data-i18n="about.fact.modding">Modding</li>
+              <li data-i18n="about.fact.ai">AI in my workflow</li>
+              <li data-i18n="about.fact.autism">Autistic, Level 1</li>
             </ul>
           </div>
         </div>
       </section>
 
       <section class="section" id="skills">
-        <p class="outline-word" aria-hidden="true">SKILLS</p>
+        <p class="outline-word" aria-hidden="true" data-i18n="skills.word">SKILLS</p>
         <div class="section__inner">
-          <h2 class="section__title">What I work with</h2>
+          <h2 class="section__title" data-i18n="skills.title">What I work with</h2>
           <div class="skills__grid">
             <div>
-              <h3 class="skills__heading">Languages</h3>
+              <h3 class="skills__heading" data-i18n="skills.languages">Languages</h3>
               <ul class="tags">
                 <li>C++</li>
                 <li>Rust</li>
@@ -184,12 +239,12 @@
               </ul>
             </div>
             <div>
-              <h3 class="skills__heading">Areas</h3>
+              <h3 class="skills__heading" data-i18n="skills.areas">Areas</h3>
               <ul class="areas">
-                <li>Backend</li>
-                <li>Game Development</li>
-                <li>Modding</li>
-                <li>AI in my workflow</li>
+                <li data-i18n="skills.area.backend">Backend</li>
+                <li data-i18n="skills.area.gamedev">Game Development</li>
+                <li data-i18n="skills.area.modding">Modding</li>
+                <li data-i18n="skills.area.ai">AI in my workflow</li>
               </ul>
             </div>
           </div>
@@ -197,9 +252,9 @@
       </section>
 
       <section class="section" id="projects">
-        <p class="outline-word" aria-hidden="true">PROJECTS</p>
+        <p class="outline-word" aria-hidden="true" data-i18n="projects.word">PROJECTS</p>
         <div class="section__inner">
-          <h2 class="section__title">What I build</h2>
+          <h2 class="section__title" data-i18n="projects.title">What I build</h2>
           <div class="projects__grid" aria-hidden="true">
             <div class="skeleton"></div>
             <div class="skeleton"></div>
@@ -211,7 +266,7 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            See all on GitHub
+            <span data-i18n="projects.seeAll">See all on GitHub</span>
             <span class="pill__icon">
               <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
             </span>
@@ -220,20 +275,20 @@
       </section>
 
       <section class="section" id="guestbook">
-        <p class="outline-word" aria-hidden="true">GUESTBOOK</p>
+        <p class="outline-word" aria-hidden="true" data-i18n="guestbook.word">GUESTBOOK</p>
         <div class="section__inner guestbook__grid">
           <form>
-            <h2 class="section__title">Leave a message</h2>
+            <h2 class="section__title" data-i18n="guestbook.title">Leave a message</h2>
             <div class="field">
               <div class="field__head">
-                <label for="gb-name">Name</label>
+                <label for="gb-name" data-i18n="guestbook.name">Name</label>
                 <span class="field__count">0/30</span>
               </div>
               <input class="field__input" id="gb-name" name="name" maxlength="30" required />
             </div>
             <div class="field">
               <div class="field__head">
-                <label for="gb-message">Message</label>
+                <label for="gb-message" data-i18n="guestbook.message">Message</label>
                 <span class="field__count">0/200</span>
               </div>
               <textarea
@@ -246,23 +301,25 @@
             </div>
             <div class="captcha-slot"></div>
             <button class="pill" type="submit" disabled>
-              Send message
+              <span data-i18n="guestbook.send">Send message</span>
               <span class="pill__icon">
                 <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
               </span>
             </button>
           </form>
           <div>
-            <h3 class="section__title">Latest messages</h3>
-            <p class="guestbook__empty">No messages yet. Be the first to write one.</p>
+            <h3 class="section__title" data-i18n="guestbook.latest">Latest messages</h3>
+            <p class="guestbook__empty" data-i18n="guestbook.empty">
+              No messages yet. Be the first to write one.
+            </p>
           </div>
         </div>
       </section>
 
       <section class="section" id="contact">
-        <p class="outline-word" aria-hidden="true">CONTACT</p>
+        <p class="outline-word" aria-hidden="true" data-i18n="contact.word">CONTACT</p>
         <div class="section__inner">
-          <h2 class="section__title">Get in touch</h2>
+          <h2 class="section__title" data-i18n="contact.title">Get in touch</h2>
           <ul class="contact__list">
             <li class="contact__item">
               <a
@@ -296,7 +353,7 @@
                 ><svg class="icon" aria-hidden="true"><use href="#i-mail" /></svg
                 >joaopdssx@gmail.com</a
               >
-              <button class="contact__copy" type="button">Copy</button>
+              <button class="contact__copy" type="button" data-i18n="contact.copy">Copy</button>
             </li>
             <li class="contact__item">
               <a
@@ -314,7 +371,7 @@
 
     <footer class="footer">
       <p>© 2026 João Pedro de Sena Santana</p>
-      <p>Made in Brazil</p>
+      <p data-i18n="footer.made">Made in Brazil</p>
     </footer>
 
     <script type="module" src="/src/main.ts"></script>
