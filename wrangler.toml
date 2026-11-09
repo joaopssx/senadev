@@ -5,5 +5,5 @@ pages_build_output_dir = "dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "senadev-guestbook"
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "b9a0af28-3e6d-4224-b0cc-ef356caa6a86"
 migrations_dir = "migrations"
