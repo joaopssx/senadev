@@ -37,6 +37,9 @@ async function readJson(request: Request): Promise<{ body: unknown } | Response>
   if (!request.headers.get('Content-Type')?.startsWith('application/json')) {
     return errorResponse('invalid_request', 415)
   }
+  if (Number(request.headers.get('Content-Length')) > MAX_BODY_BYTES) {
+    return errorResponse('invalid_request', 413)
+  }
   const text = await request.text()
   if (new TextEncoder().encode(text).length > MAX_BODY_BYTES) {
     return errorResponse('invalid_request', 413)
