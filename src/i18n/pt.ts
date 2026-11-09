@@ -10,13 +10,13 @@ export const pt: Record<TranslationKey, string> = {
   'nav.contact': 'Contato',
   'nav.menu': 'Menu',
   'nav.sections': 'Seções',
-  'nav.language': 'Mudar para inglês',
+  'nav.language': 'EN | PT, mudar para inglês',
 
   'hero.intro': 'EU SOU',
   'hero.tagline': 'Desenvolvedor backend, de jogos e modder, do Brasil.',
   'hero.viewProjects': 'Ver projetos',
   'hero.contactMe': 'Fale comigo',
-  'hero.scrollLabel': 'Rolar até Sobre',
+  'hero.scrollLabel': 'Role para explorar',
   'hero.scrollRing': 'ROLE PARA EXPLORAR - ROLE PARA EXPLORAR -',
 
   'about.word': 'SOBRE',

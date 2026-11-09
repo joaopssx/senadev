@@ -20,6 +20,7 @@
   display: block;
   width: 100%;
   padding: var(--space-3) var(--space-4);
+  border-color: var(--glass-field-edge);
   transition: border-color var(--duration-fast);
 }
 
@@ -71,6 +72,7 @@ textarea.field__input {
 }
 
 .contact__copy {
+  min-height: 2.75rem;
   padding: var(--space-2) var(--space-4);
   background: var(--surface-raised);
   border: 0;

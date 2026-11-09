@@ -103,7 +103,7 @@
         <button
           class="nav__lang"
           type="button"
-          aria-label="Switch to Portuguese"
+          aria-label="EN | PT, switch to Portuguese"
           data-i18n-label="nav.language"
         >
           <span class="nav__lang-en">EN</span> | <span class="nav__lang-pt">PT</span>
@@ -123,37 +123,33 @@
     <nav class="rail" aria-label="Sections" data-i18n-label="nav.sections">
       <ol>
         <li>
-          <a class="rail__link" href="#home" aria-label="Home" data-i18n-label="nav.home">01</a>
-        </li>
-        <li>
-          <a class="rail__link" href="#about" aria-label="About" data-i18n-label="nav.about">02</a>
-        </li>
-        <li>
-          <a class="rail__link" href="#skills" aria-label="Skills" data-i18n-label="nav.skills"
-            >03</a
+          <a class="rail__link" href="#home"
+            >01 <span class="rail__name" data-i18n="nav.home">Home</span></a
           >
         </li>
         <li>
-          <a
-            class="rail__link"
-            href="#projects"
-            aria-label="Projects"
-            data-i18n-label="nav.projects"
-            >04</a
+          <a class="rail__link" href="#about"
+            >02 <span class="rail__name" data-i18n="nav.about">About</span></a
           >
         </li>
         <li>
-          <a
-            class="rail__link"
-            href="#guestbook"
-            aria-label="Guestbook"
-            data-i18n-label="nav.guestbook"
-            >05</a
+          <a class="rail__link" href="#skills"
+            >03 <span class="rail__name" data-i18n="nav.skills">Skills</span></a
           >
         </li>
         <li>
-          <a class="rail__link" href="#contact" aria-label="Contact" data-i18n-label="nav.contact"
-            >06</a
+          <a class="rail__link" href="#projects"
+            >04 <span class="rail__name" data-i18n="nav.projects">Projects</span></a
+          >
+        </li>
+        <li>
+          <a class="rail__link" href="#guestbook"
+            >05 <span class="rail__name" data-i18n="nav.guestbook">Guestbook</span></a
+          >
+        </li>
+        <li>
+          <a class="rail__link" href="#contact"
+            >06 <span class="rail__name" data-i18n="nav.contact">Contact</span></a
           >
         </li>
       </ol>
@@ -210,7 +206,7 @@
           <a
             class="scroll-cue"
             href="#about"
-            aria-label="Scroll to About"
+            aria-label="Scroll to explore"
             data-i18n-label="hero.scrollLabel"
           >
             <svg class="scroll-cue__ring" viewBox="0 0 100 100" aria-hidden="true">
@@ -355,7 +351,13 @@
           </form>
           <div>
             <h3 class="section__title" data-i18n="guestbook.latest">Latest messages</h3>
-            <ul class="guestbook__list" tabindex="0" hidden></ul>
+            <ul
+              class="guestbook__list"
+              tabindex="0"
+              aria-label="Latest messages"
+              data-i18n-label="guestbook.latest"
+              hidden
+            ></ul>
             <p class="guestbook__empty"></p>
           </div>
         </div>

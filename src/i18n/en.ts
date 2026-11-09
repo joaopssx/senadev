@@ -8,13 +8,13 @@ export const en = {
   'nav.contact': 'Contact',
   'nav.menu': 'Menu',
   'nav.sections': 'Sections',
-  'nav.language': 'Switch to Portuguese',
+  'nav.language': 'EN | PT, switch to Portuguese',
 
   'hero.intro': 'I AM',
   'hero.tagline': 'Backend developer, game developer and modder from Brazil.',
   'hero.viewProjects': 'View projects',
   'hero.contactMe': 'Contact me',
-  'hero.scrollLabel': 'Scroll to About',
+  'hero.scrollLabel': 'Scroll to explore',
   'hero.scrollRing': 'SCROLL TO EXPLORE - SCROLL TO EXPLORE -',
 
   'about.word': 'ABOUT',

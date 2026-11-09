@@ -37,7 +37,6 @@
   --space-6: 2rem;
   --space-7: 3rem;
   --space-8: 4rem;
-  --space-9: 6rem;
   --space-section: clamp(5rem, 12vw, 10rem);
   --gutter: clamp(1rem, 6vw, 6rem);
 
@@ -45,6 +44,7 @@
   --glass-dark: rgb(14 8 22 / 72%);
   --glass-edge: rgb(255 255 255 / 14%);
   --glass-edge-lit: rgb(255 255 255 / 32%);
+  --glass-field-edge: rgb(255 255 255 / 42%);
   --glass-blur: 22px;
 
   --radius-sm: 0.5rem;

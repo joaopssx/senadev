@@ -40,6 +40,7 @@
 }
 
 .hero__name {
+  text-shadow: 0 2px 24px rgb(5 2 10 / 55%);
   margin-bottom: var(--space-4);
   font-family: var(--font-display);
   font-size: var(--text-hero);
