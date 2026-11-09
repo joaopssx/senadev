@@ -11,6 +11,7 @@ Personal portfolio of João Pedro de Sena Santana. It has 3D liquid blobs, a por
 | Frontend  | Vite and plain TypeScript          | Six sections don't need a framework runtime        |
 | 3D        | Three.js, loaded after the content | Real lighting without delaying the first paint     |
 | Portrait  | Canvas 2D                          | Thousands of sprites, no library needed            |
+| Hosting   | Vercel                             | Serves the site and forwards `/api` to Cloudflare  |
 | Backend   | Cloudflare Pages Functions         | Same origin as the site, no server to maintain     |
 | Database  | Cloudflare D1                      | SQLite with a free tier that fits a guestbook      |
 | Anti-spam | Cloudflare Turnstile, honeypot     | No tracking cookies or image puzzles for visitors  |
@@ -75,14 +76,15 @@ docs/               architecture, decisions, deploy guide
 
 ## Environment variables
 
-| Name                      | Where       | Purpose                                 |
-| ------------------------- | ----------- | --------------------------------------- |
-| `VITE_TURNSTILE_SITE_KEY` | `.env`      | Public Turnstile key, used at build     |
-| `TURNSTILE_SECRET_KEY`    | `.dev.vars` | Verifies Turnstile tokens on the server |
-| `IP_HASH_SALT`            | `.dev.vars` | Salt for hashing visitor IPs            |
-| `GITHUB_TOKEN`            | `.dev.vars` | Optional, raises the GitHub API limit   |
+| Name                      | Where       | Purpose                                               |
+| ------------------------- | ----------- | ----------------------------------------------------- |
+| `VITE_TURNSTILE_SITE_KEY` | `.env`      | Public Turnstile key, used at build                   |
+| `TURNSTILE_SECRET_KEY`    | `.dev.vars` | Verifies Turnstile tokens on the server               |
+| `IP_HASH_SALT`            | `.dev.vars` | Salt for hashing visitor IPs                          |
+| `ORIGIN_SECRET`           | `.dev.vars` | Lets the API trust the visitor IP forwarded by Vercel |
+| `GITHUB_TOKEN`            | `.dev.vars` | Optional, raises the GitHub API limit                 |
 
-`.env` and `.dev.vars` are ignored by Git. In production these values live in the Cloudflare dashboard.
+`.env` and `.dev.vars` are ignored by Git. In production these values live in the Vercel and Cloudflare dashboards.
 
 ## Deploy
 

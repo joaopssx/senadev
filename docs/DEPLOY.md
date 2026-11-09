@@ -34,44 +34,53 @@ npx wrangler d1 migrations apply senadev-guestbook --remote
 ## 3. Create the Turnstile widget
 
 1. In the Cloudflare dashboard, open **Turnstile** and select **Add widget**.
-2. Name it `senadev`, add the hostnames `senadev.com.br` and your `*.pages.dev` address, and choose **Managed** mode.
+2. Name it `senadev`, add the hostname `senadev.com.br`, and choose **Managed** mode.
 3. Select **Create** and copy the site key and the secret key.
 
-## 4. Create the Pages project
+## 4. Create the Pages project (API)
+
+Cloudflare Pages runs the Functions and the database. Vercel serves the site and forwards `/api/*` here.
 
 1. Go to **Workers & Pages**, then **Create application**, **Pages**, **Connect to Git**.
 2. Select GitHub, authorize it and choose the repository, then **Begin setup**.
-3. Use these settings:
+3. Name the project `senadev`, because `vercel.json` forwards to `senadev.pages.dev`. If the address you get differs, update `vercel.json`.
+4. Use these settings:
    - Production branch: `main`
    - Framework preset: None
    - Build command: `npm run build`
    - Build output directory: `dist`
-4. Under environment variables, add `VITE_TURNSTILE_SITE_KEY` with the site key. It is read during the build.
 5. Select **Save and Deploy**.
 
 `wrangler.toml` is the source of truth for the D1 binding, so it appears as read-only in the dashboard.
 
-## 5. Add the secrets
+## 5. Add the Cloudflare secrets
 
-In your project, open **Settings** and the variables section. For Production, add each one as a secret:
+In your Pages project, open **Settings** and the variables section. For Production, add each one as a secret:
 
 | Name                   | Value                            |
 | ---------------------- | -------------------------------- |
 | `TURNSTILE_SECRET_KEY` | the Turnstile secret key         |
 | `IP_HASH_SALT`         | output of `openssl rand -hex 32` |
+| `ORIGIN_SECRET`        | output of `openssl rand -hex 32` |
 | `GITHUB_TOKEN`         | optional, a token with no scopes |
 
 Secrets only take effect on the next deployment. Open **Deployments** and retry the latest one.
 
-## 6. Point the domain
+## 6. Create the Vercel project (site)
 
-1. In Cloudflare, go to **Domains**, select **Onboard a domain**, enter `senadev.com.br` and pick the Free plan.
-2. Note the two nameservers Cloudflare assigns.
-3. In [registro.br](https://registro.br), sign in and select the domain. If DNSSEC is on, turn it off first.
-4. Replace the DNS servers with the two from Cloudflare and save. The change can take a few hours.
-5. Once the domain is active, open your Pages project, then **Custom domains**, **Set up a domain**, and enter `senadev.com.br`.
+1. In Vercel, select **Add New**, **Project**, and import the repository. `vercel.json` already sets the build.
+2. Add these environment variables for Production:
+   - `VITE_TURNSTILE_SITE_KEY`: the Turnstile site key
+   - `ORIGIN_SECRET`: the same value used on Cloudflare
+3. Select **Deploy**. Add your `*.vercel.app` address to the Turnstile widget hostnames.
 
-## 7. Check it live
+## 7. Point the domain
+
+1. In the Vercel project, open **Settings**, **Domains**, and add `senadev.com.br`.
+2. Vercel shows the DNS records or nameservers to use. Set them where the domain's DNS is managed, which is [registro.br](https://registro.br) by default. If DNSSEC is on and you change nameservers, turn it off first.
+3. Wait for Vercel to mark the domain as valid. The change can take a few hours.
+
+## 8. Check it live
 
 - The site loads over HTTPS, and the blobs and portrait appear.
 - Projects shows real repositories.

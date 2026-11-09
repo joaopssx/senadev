@@ -1,13 +1,17 @@
 # Architecture
 
-A static site built by Vite, plus two Cloudflare Pages Functions on the same origin.
+A static site built by Vite and served by Vercel. Requests to `/api/*` are forwarded to two Cloudflare Pages Functions, so the browser still sees one origin.
 
 ```
 Browser
-  |- static files (HTML, CSS, JS, fonts) -> Cloudflare Pages
+  |- static files (HTML, CSS, JS, fonts) -> Vercel
   |- GET /api/repos                      -> Function -> GitHub API (cached 1 hour)
   |- GET, POST /api/guestbook            -> Function -> Turnstile, D1
 ```
+
+## Visitor IP behind the proxy
+
+Behind the rewrite, Cloudflare sees Vercel as the client. Vercel sends the visitor address in `x-real-ip` and adds a shared secret in `x-origin-secret`. The Function only trusts `x-real-ip` when that secret matches, so a direct call to `pages.dev` cannot fake an address.
 
 ## Loading order
 

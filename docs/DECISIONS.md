@@ -10,6 +10,12 @@ Trade-off: if the site grew into an app with lots of shared state, this would ne
 
 Cloudflare's new features are going to Workers, and Workers has more of them. This site needs none of those, while Pages gives file-based routes in `functions/` and simple Git deploys. Moving later means writing a small router for two endpoints.
 
+## Site on Vercel, API on Cloudflare
+
+Vercel hosts the static site. The guestbook depends on D1, which only binds to Cloudflare, so the Functions stay on Pages and Vercel forwards `/api/*` to them. The browser sees one origin, so no CORS is needed.
+
+Trade-off: two platforms to manage, and a shared secret is needed to pass the visitor IP safely.
+
 ## D1 for the guestbook
 
 The data is one small table and needs simple queries, ordering and an atomic limit. D1 is SQLite with SQL migrations, and it binds directly to Functions with no connection strings or separate service.
