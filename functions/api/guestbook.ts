@@ -29,6 +29,11 @@ const INSERT_IF_UNDER_LIMIT = `
   ) < ?4
   RETURNING id, name, message, created_at`
 
+// The hash only matters during the rate limit window, so older ones are dropped (LGPD).
+const CLEAR_OLD_HASHES = `
+  UPDATE guestbook SET ip_hash = ''
+  WHERE ip_hash <> '' AND created_at <= strftime('%Y-%m-%dT%H:%M:%SZ', 'now', '-1 hour')`
+
 function errorResponse(error: string, status: number): Response {
   return Response.json({ error }, { status })
 }
@@ -56,7 +61,7 @@ export const onRequestGet: PagesFunction<Env> = async ({ env }) => {
   return Response.json(results, { headers: { 'Cache-Control': 'no-store' } })
 }
 
-export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
+export const onRequestPost: PagesFunction<Env> = async ({ request, env, waitUntil }) => {
   const parsed = await readJson(request)
   if (parsed instanceof Response) return parsed
 
@@ -73,5 +78,6 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     .first<GuestbookEntry>()
   if (!created) return errorResponse('rate_limited', 429)
 
+  waitUntil(env.DB.prepare(CLEAR_OLD_HASHES).run())
   return Response.json(created, { status: 201 })
 }

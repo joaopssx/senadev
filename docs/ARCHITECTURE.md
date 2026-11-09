@@ -33,7 +33,8 @@ The HTML holds all the content in English, so the page is readable before any sc
    - verifies the token with Turnstile (`_lib/turnstile.ts`)
    - hashes the IP with SHA-256 and a secret salt (`_lib/hash-ip.ts`)
    - runs one `INSERT` that only writes if the visitor sent fewer than 3 messages in the last hour
-4. The server sets `created_at` in UTC. The browser displays it in the Sao Paulo time zone.
+4. After a successful insert, hashes older than one hour are cleared.
+5. The server sets `created_at` in UTC. The browser displays it in the Sao Paulo time zone.
 
 Errors are short codes such as `rate_limited`, which the frontend translates. All SQL uses bound parameters and all visitor text is rendered with `textContent`.
 

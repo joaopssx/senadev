@@ -24,7 +24,7 @@ It usually needs no interaction from visitors, is free, and is verified on the s
 
 The hourly limit only needs to know whether two requests came from the same visitor. A SHA-256 hash with a secret salt answers that without keeping the address, in line with data minimization under the LGPD. The salt stops anyone from reversing the hash by trying every possible IP.
 
-A salted hash is still pseudonymous data, not anonymous data, and should be treated with care.
+A salted hash is still pseudonymous data, not anonymous data, so each new message also clears hashes older than the one-hour window.
 
 ## Rate limit inside the INSERT
 
