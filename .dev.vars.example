@@ -1,0 +1,11 @@
+# Copy to .dev.vars for local development. Never commit the copy.
+
+# Cloudflare dashboard > Turnstile > your widget > Secret Key.
+# Local development: use Cloudflare's test key 1x0000000000000000000000000000000AA (always passes).
+TURNSTILE_SECRET_KEY=
+
+# Any long random string. Generate one with: openssl rand -hex 32
+IP_HASH_SALT=
+
+# Optional. Raises the GitHub API rate limit. Needs no scopes for public repositories.
+GITHUB_TOKEN=
