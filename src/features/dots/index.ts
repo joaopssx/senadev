@@ -22,12 +22,12 @@ export function initDots(): void {
   let frame = 0
   let lastTime = 0
 
-  function resize(element: HTMLCanvasElement, ctx: CanvasRenderingContext2D): void {
-    const { width, height } = element.getBoundingClientRect()
+  const resize = (): void => {
+    const { width, height } = canvas.getBoundingClientRect()
     const pixelRatio = Math.min(devicePixelRatio, MAX_PIXEL_RATIO)
-    element.width = Math.round(width * pixelRatio)
-    element.height = Math.round(height * pixelRatio)
-    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0)
+    canvas.width = Math.round(width * pixelRatio)
+    canvas.height = Math.round(height * pixelRatio)
+    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0)
 
     const cell = Math.min(width / dots.w, height / dots.h)
     const step = Math.max(1, Math.ceil(MIN_CELL_PX / cell))
@@ -36,9 +36,9 @@ export function initDots(): void {
     sprites = createSprites(cell * step, pixelRatio)
   }
 
-  function draw(ctx: CanvasRenderingContext2D, seconds: number): void {
+  const draw = (seconds: number): void => {
     if (!field) return
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+    context.clearRect(0, 0, canvas.width, canvas.height)
     for (let i = 0; i < field.count; i++) {
       const sprite = sprites[field.size[i] as number]
       if (!sprite) continue
@@ -47,7 +47,7 @@ export function initDots(): void {
       const home = (field.homeX[i] as number) + (field.homeY[i] as number)
       const phase = seconds * BREATH_SPEED + home * PHASE_SPREAD
       const half = sprite.size / 2
-      ctx.drawImage(
+      context.drawImage(
         sprite.image,
         x + Math.cos(phase) * BREATH_PX - half,
         y + Math.sin(phase) * BREATH_PX - half,
@@ -57,11 +57,10 @@ export function initDots(): void {
     }
   }
 
-  function tick(time: number): void {
-    if (!context) return
+  const tick = (time: number): void => {
     if (field) stepField(field, Math.min((time - lastTime) / 1000, MAX_DT), pointer)
     lastTime = time
-    draw(context, time / 1000)
+    draw(time / 1000)
     frame = requestAnimationFrame(tick)
   }
 
@@ -77,8 +76,8 @@ export function initDots(): void {
   }
 
   new ResizeObserver(() => {
-    resize(canvas, context)
-    if (reducedMotion) draw(context, 0)
+    resize()
+    if (reducedMotion) draw(0)
   }).observe(canvas)
 
   if (reducedMotion) return

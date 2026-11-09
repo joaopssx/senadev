@@ -27,8 +27,10 @@ interface Blob {
   sway: number
 }
 
+const defaultPalette: Palette = { color: '#5b21b6', amplitude: 0.3 }
+
 const palettes: Record<string, Palette> = {
-  home: { color: '#5b21b6', amplitude: 0.3 },
+  home: defaultPalette,
   about: { color: '#7e22ce', amplitude: 0.34 },
   skills: { color: '#3730a3', amplitude: 0.26 },
   projects: { color: '#6d28d9', amplitude: 0.32 },
@@ -57,12 +59,12 @@ function createBlob(
   if (!slot) return null
   const uniforms: BlobUniforms = {
     uTime: { value: 0 },
-    uAmplitude: { value: palettes.home?.amplitude ?? 0 },
+    uAmplitude: { value: defaultPalette.amplitude },
     uFrequency: { value: frequency },
     uSeed: { value: seed },
   }
   const material = createBlobMaterial(uniforms)
-  material.color.set(palettes.home?.color ?? '#7c3aed')
+  material.color.set(defaultPalette.color)
   return {
     mesh: new Mesh(new IcosahedronGeometry(1, detail), material),
     slot,
@@ -91,6 +93,26 @@ function watchActivePalette(onChange: (palette: Palette) => void): void {
   document.querySelectorAll('main section[id]').forEach((section) => observer.observe(section))
 }
 
+function placeBlob(blob: Blob, worldPerPixel: number, seconds: number): boolean {
+  const rect = blob.slot.getBoundingClientRect()
+  const onScreen =
+    rect.bottom > -OFFSCREEN_MARGIN_PX && rect.top < innerHeight + OFFSCREEN_MARGIN_PX
+  blob.mesh.visible = onScreen
+  if (!onScreen) return false
+
+  const centerY = rect.top + rect.height / 2
+  const scroll = (innerHeight / 2 - centerY) / innerHeight
+  blob.mesh.position.set(
+    (rect.left + rect.width / 2 - innerWidth / 2) * worldPerPixel + scroll * blob.sway,
+    (innerHeight / 2 - centerY) * worldPerPixel,
+    0,
+  )
+  blob.mesh.scale.copy(blob.shape).multiplyScalar((rect.width / 2) * worldPerPixel * SLOT_FILL)
+  blob.mesh.rotation.set(scroll * 0.6, seconds * 0.06 + scroll * 1.4, scroll * 0.5)
+  blob.uniforms.uTime.value = seconds
+  return true
+}
+
 export function startBlobs(canvas: HTMLCanvasElement, detail: number, onLost: () => void): void {
   const renderer = new WebGLRenderer({ canvas, alpha: true, antialias: true })
   renderer.toneMapping = ACESFilmicToneMapping
@@ -114,8 +136,8 @@ export function startBlobs(canvas: HTMLCanvasElement, detail: number, onLost: ()
   blobs.forEach((blob) => scene.add(blob.mesh))
 
   const pointer = { x: 0.4, y: 0.2 }
-  const targetColor = new Color(palettes.home?.color)
-  let targetAmplitude = palettes.home?.amplitude ?? 0
+  const targetColor = new Color(defaultPalette.color)
+  let targetAmplitude = defaultPalette.amplitude
   let lastTime = performance.now()
   let renderedBlobs = false
   let frame = 0
@@ -124,26 +146,6 @@ export function startBlobs(canvas: HTMLCanvasElement, detail: number, onLost: ()
     renderer.setSize(innerWidth, innerHeight, false)
     camera.aspect = innerWidth / innerHeight
     camera.updateProjectionMatrix()
-  }
-
-  function placeBlob(blob: Blob, worldPerPixel: number, seconds: number): boolean {
-    const rect = blob.slot.getBoundingClientRect()
-    const onScreen =
-      rect.bottom > -OFFSCREEN_MARGIN_PX && rect.top < innerHeight + OFFSCREEN_MARGIN_PX
-    blob.mesh.visible = onScreen
-    if (!onScreen) return false
-
-    const centerY = rect.top + rect.height / 2
-    const scroll = (innerHeight / 2 - centerY) / innerHeight
-    blob.mesh.position.set(
-      (rect.left + rect.width / 2 - innerWidth / 2) * worldPerPixel + scroll * blob.sway,
-      (innerHeight / 2 - centerY) * worldPerPixel,
-      0,
-    )
-    blob.mesh.scale.copy(blob.shape).multiplyScalar((rect.width / 2) * worldPerPixel * SLOT_FILL)
-    blob.mesh.rotation.set(scroll * 0.6, seconds * 0.06 + scroll * 1.4, scroll * 0.5)
-    blob.uniforms.uTime.value = seconds
-    return true
   }
 
   function render(time: number): void {

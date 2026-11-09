@@ -62,31 +62,28 @@ export function initGuestbook(): void {
   let statusKey: TranslationKey | null = null
   let captcha: Captcha | null = null
 
-  function renderList(): void {
-    list?.replaceChildren(...entries.map(createEntryItem))
-    if (list) list.hidden = entries.length === 0
-    if (!listNote) return
+  const renderList = (): void => {
+    list.replaceChildren(...entries.map(createEntryItem))
+    list.hidden = entries.length === 0
     listNote.hidden = entries.length > 0
     if (listState === 'loading') listNote.textContent = t('guestbook.loading')
     if (listState === 'failed') listNote.textContent = t('guestbook.error.load')
     if (listState === 'ready') listNote.textContent = t('guestbook.empty')
   }
 
-  function showStatus(key: TranslationKey | null, isError = false): void {
+  const showStatus = (key: TranslationKey | null, isError = false): void => {
     statusKey = key
-    if (!status) return
     status.textContent = key ? t(key) : ''
     status.classList.toggle('guestbook__status--error', isError)
   }
 
-  async function submit(event: SubmitEvent): Promise<void> {
+  const submit = async (event: SubmitEvent): Promise<void> => {
     event.preventDefault()
     const token = captcha?.getToken()
     if (!token) {
       showStatus('guestbook.error.captchaFailed', true)
       return
     }
-    if (!button) return
     button.disabled = true
     showStatus('guestbook.sending')
 
@@ -100,7 +97,7 @@ export function initGuestbook(): void {
       entries = [result.entry, ...entries].slice(0, MAX_ENTRIES)
       listState = 'ready'
       renderList()
-      form?.reset()
+      form.reset()
       updateCounters.forEach((update) => update())
       showStatus('guestbook.sent')
     } else {
@@ -110,14 +107,14 @@ export function initGuestbook(): void {
     button.disabled = false
   }
 
-  async function load(): Promise<void> {
+  const load = async (): Promise<void> => {
     const loaded = await fetchEntries()
     entries = loaded ?? []
     listState = loaded ? 'ready' : 'failed'
     renderList()
 
     const siteKey: string | undefined = import.meta.env.VITE_TURNSTILE_SITE_KEY
-    if (!siteKey || !slot) return
+    if (!siteKey) return
     try {
       captcha = await createCaptcha(slot, siteKey)
       captcha.render(document.documentElement.lang.toLowerCase())
