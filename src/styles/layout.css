@@ -68,10 +68,19 @@
 }
 
 .about__grid {
+  padding-left: 11vw;
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
   gap: var(--space-8);
   align-items: center;
+}
+
+.portrait {
+  width: 100%;
+  max-width: 24rem;
+  aspect-ratio: 5 / 6;
+  margin-inline: auto;
+  touch-action: pan-y;
 }
 
 .about__text {
@@ -129,6 +138,10 @@
 }
 
 @media (max-width: 60rem) {
+  .about__grid {
+    padding-left: 0;
+  }
+
   .about__grid,
   .skills__grid,
   .guestbook__grid {

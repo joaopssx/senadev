@@ -5,3 +5,4 @@ import { initNav } from './features/nav'
 initI18n()
 initNav()
 initAbout()
+void import('./features/dots').then(({ initDots }) => initDots())

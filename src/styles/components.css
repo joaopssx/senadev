@@ -93,9 +93,9 @@
 }
 
 .blob-fallback--about {
-  top: 18%;
-  left: -14%;
-  width: clamp(18rem, 42vw, 40rem);
+  top: 22%;
+  left: -14vw;
+  width: 30vw;
   opacity: 0.8;
 }
 
@@ -107,8 +107,9 @@
   }
 
   .blob-fallback--about {
-    top: var(--space-8);
-    width: 85vw;
+    top: var(--space-6);
+    left: -30vw;
+    width: 60vw;
   }
 }
 
@@ -157,16 +158,6 @@
   to {
     transform: rotate(1turn);
   }
-}
-
-.portrait {
-  width: 100%;
-  max-width: 28rem;
-  aspect-ratio: 1;
-  margin-inline: auto;
-  background-image: radial-gradient(circle, var(--purple-600) 1.5px, transparent 2px);
-  background-size: 12px 12px;
-  mask-image: radial-gradient(circle, black 35%, transparent 70%);
 }
 
 .facts {
