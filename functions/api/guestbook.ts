@@ -1,4 +1,5 @@
 import type { GuestbookEntry } from '../../src/types'
+import { getClientIp } from './_lib/client-ip'
 import { hashIp } from './_lib/hash-ip'
 import { verifyTurnstile } from './_lib/turnstile'
 import { validateEntry } from './_lib/validate'
@@ -7,6 +8,7 @@ interface Env {
   DB: D1Database
   TURNSTILE_SECRET_KEY: string
   IP_HASH_SALT: string
+  ORIGIN_SECRET?: string
 }
 
 const MAX_BODY_BYTES = 4096
@@ -68,7 +70,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env, waitUnti
   const entry = validateEntry(parsed.body)
   if (!entry.ok) return errorResponse(entry.error, 400)
 
-  const ip = request.headers.get('CF-Connecting-IP') ?? 'unknown'
+  const ip = getClientIp(request, env.ORIGIN_SECRET)
   if (!(await verifyTurnstile(entry.token, env.TURNSTILE_SECRET_KEY, ip))) {
     return errorResponse('captcha_failed', 403)
   }

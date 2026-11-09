@@ -7,5 +7,9 @@ TURNSTILE_SECRET_KEY=
 # Any long random string. Generate one with: openssl rand -hex 32
 IP_HASH_SALT=
 
+# Shared with Vercel so the API can trust the visitor IP it forwards. Same value in both places.
+# Generate one with: openssl rand -hex 32
+ORIGIN_SECRET=
+
 # Optional. Raises the GitHub API rate limit. Needs no scopes for public repositories.
 GITHUB_TOKEN=
