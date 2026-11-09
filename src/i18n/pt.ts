@@ -60,6 +60,24 @@ export const pt: Record<TranslationKey, string> = {
   'guestbook.latest': 'Últimos recados',
   'guestbook.empty': 'Nenhum recado ainda. Escreva o primeiro.',
 
+  'guestbook.honeypot': 'Deixe este campo vazio',
+  'guestbook.loading': 'Carregando recados...',
+  'guestbook.sending': 'Enviando...',
+  'guestbook.sent': 'Recado enviado. Obrigado por escrever.',
+  'guestbook.error.load': 'Não foi possível carregar os recados. Tente novamente mais tarde.',
+  'guestbook.error.rateLimited':
+    'Você pode enviar até 3 recados por hora. Tente novamente mais tarde.',
+  'guestbook.error.invalidName': 'Digite um nome com até 30 caracteres.',
+  'guestbook.error.invalidMessage': 'Digite um recado com até 200 caracteres.',
+  'guestbook.error.tooManyLinks': 'Use no máximo um link por recado.',
+  'guestbook.error.captchaFailed': 'Conclua a verificação e envie novamente.',
+  'guestbook.error.captchaUnavailable':
+    'A verificação não carregou. Recarregue a página e tente novamente.',
+  'guestbook.error.invalidRequest':
+    'Algo deu errado com este envio. Recarregue a página e tente novamente.',
+  'guestbook.error.network':
+    'Não foi possível enviar seu recado. Verifique sua conexão e tente novamente.',
+
   'contact.word': 'CONTATO',
   'contact.title': 'Fale comigo',
   'contact.copy': 'Copiar',

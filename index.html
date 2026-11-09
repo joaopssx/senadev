@@ -279,7 +279,7 @@
       <section class="section section--orbs" id="guestbook">
         <p class="outline-word" aria-hidden="true" data-i18n="guestbook.word">GUESTBOOK</p>
         <div class="section__inner guestbook__grid">
-          <form>
+          <form class="guestbook__form" novalidate>
             <h2 class="section__title" data-i18n="guestbook.title">Leave a message</h2>
             <div class="field">
               <div class="field__head">
@@ -301,6 +301,10 @@
                 required
               ></textarea>
             </div>
+            <div class="field--trap" aria-hidden="true">
+              <label for="gb-website" data-i18n="guestbook.honeypot">Leave this field empty</label>
+              <input id="gb-website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
             <div class="captcha-slot"></div>
             <button class="pill" type="submit" disabled>
               <span data-i18n="guestbook.send">Send message</span>
@@ -308,12 +312,12 @@
                 <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
               </span>
             </button>
+            <p class="guestbook__status" role="status"></p>
           </form>
           <div>
             <h3 class="section__title" data-i18n="guestbook.latest">Latest messages</h3>
-            <p class="guestbook__empty" data-i18n="guestbook.empty">
-              No messages yet. Be the first to write one.
-            </p>
+            <ul class="guestbook__list" tabindex="0" hidden></ul>
+            <p class="guestbook__empty"></p>
           </div>
         </div>
       </section>

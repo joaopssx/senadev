@@ -79,3 +79,37 @@ textarea.field__input {
   font-weight: 600;
   cursor: pointer;
 }
+
+.field--trap {
+  position: absolute;
+  left: -9999px;
+}
+
+.guestbook__status {
+  min-height: 1lh;
+  margin-top: var(--space-4);
+  color: var(--purple-400);
+  font-size: var(--text-sm);
+}
+
+.guestbook__status--error {
+  color: var(--danger);
+}
+
+.guestbook__list {
+  max-height: 30rem;
+  overflow-y: auto;
+  border-top: 1px solid var(--line);
+}
+
+.guestbook__entry {
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--line);
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+}
+
+.guestbook__date {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}

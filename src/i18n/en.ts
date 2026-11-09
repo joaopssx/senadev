@@ -58,6 +58,22 @@ export const en = {
   'guestbook.latest': 'Latest messages',
   'guestbook.empty': 'No messages yet. Be the first to write one.',
 
+  'guestbook.honeypot': 'Leave this field empty',
+  'guestbook.loading': 'Loading messages...',
+  'guestbook.sending': 'Sending...',
+  'guestbook.sent': 'Message sent. Thanks for writing.',
+  'guestbook.error.load': "Couldn't load the messages. Try again later.",
+  'guestbook.error.rateLimited': 'You can send up to 3 messages per hour. Try again later.',
+  'guestbook.error.invalidName': 'Enter a name with up to 30 characters.',
+  'guestbook.error.invalidMessage': 'Enter a message with up to 200 characters.',
+  'guestbook.error.tooManyLinks': 'Use at most one link per message.',
+  'guestbook.error.captchaFailed': 'Complete the verification and send again.',
+  'guestbook.error.captchaUnavailable':
+    "The verification couldn't load. Reload the page and try again.",
+  'guestbook.error.invalidRequest':
+    'Something went wrong with this request. Reload the page and try again.',
+  'guestbook.error.network': "Couldn't send your message. Check your connection and try again.",
+
   'contact.word': 'CONTACT',
   'contact.title': 'Get in touch',
   'contact.copy': 'Copy',
