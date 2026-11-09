@@ -48,6 +48,8 @@ export const pt: Record<TranslationKey, string> = {
 
   'projects.word': 'PROJETOS',
   'projects.title': 'O que eu construo',
+  'projects.viewRepo': 'Ver repositório',
+  'projects.noDescription': 'Ainda sem descrição.',
   'projects.seeAll': 'Ver tudo no GitHub',
 
   'guestbook.word': 'MURAL',

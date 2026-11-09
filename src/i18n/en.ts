@@ -46,6 +46,8 @@ export const en = {
 
   'projects.word': 'PROJECTS',
   'projects.title': 'What I build',
+  'projects.viewRepo': 'View repository',
+  'projects.noDescription': 'No description yet.',
   'projects.seeAll': 'See all on GitHub',
 
   'guestbook.word': 'GUESTBOOK',

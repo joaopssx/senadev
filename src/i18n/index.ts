@@ -14,6 +14,10 @@ export function onLocaleChange(listener: () => void): void {
   localeListeners.push(listener)
 }
 
+export function getLocale(): Locale {
+  return locale
+}
+
 export function t(key: TranslationKey): string {
   return dictionaries[locale][key]
 }
