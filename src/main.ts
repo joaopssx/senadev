@@ -1,6 +1,7 @@
 import { initI18n } from './i18n'
 import { initAbout } from './features/about'
 import { initBlobs } from './features/blob'
+import { initContact } from './features/contact'
 import { initGuestbook } from './features/guestbook'
 import { initNav } from './features/nav'
 import { initProjects } from './features/projects'
@@ -11,4 +12,5 @@ initAbout()
 initBlobs()
 void initProjects()
 initGuestbook()
+initContact()
 void import('./features/dots').then(({ initDots }) => initDots())
