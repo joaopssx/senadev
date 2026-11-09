@@ -4,3 +4,10 @@ export interface Repo {
   language: string | null
   url: string
 }
+
+export interface GuestbookEntry {
+  id: number
+  name: string
+  message: string
+  created_at: string
+}
