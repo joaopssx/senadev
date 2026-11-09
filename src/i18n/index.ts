@@ -8,6 +8,11 @@ const dictionaries: Record<Locale, Record<TranslationKey, string>> = { en, pt }
 const htmlLang: Record<Locale, string> = { en: 'en', pt: 'pt-BR' }
 
 let locale: Locale = 'en'
+const localeListeners: Array<() => void> = []
+
+export function onLocaleChange(listener: () => void): void {
+  localeListeners.push(listener)
+}
 
 export function t(key: TranslationKey): string {
   return dictionaries[locale][key]
@@ -44,6 +49,7 @@ function toggleLocale(): void {
   locale = locale === 'en' ? 'pt' : 'en'
   saveLocale(locale)
   applyTranslations()
+  localeListeners.forEach((listener) => listener())
 }
 
 export function initI18n(): void {

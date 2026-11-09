@@ -80,6 +80,7 @@
 }
 
 .about__age {
+  min-height: 1lh;
   margin-bottom: var(--space-6);
   font-family: var(--font-display);
   font-size: var(--text-sm);
