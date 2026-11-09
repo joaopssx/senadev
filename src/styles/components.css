@@ -1,0 +1,209 @@
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 3rem;
+  padding: var(--space-1) var(--space-1) var(--space-1) var(--space-5);
+  background: var(--surface-raised);
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--duration-base) var(--ease-out);
+}
+
+.pill__icon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--text);
+  border-radius: 50%;
+  color: var(--bg);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.pill:hover {
+  background: var(--purple-600);
+}
+
+.pill:hover .pill__icon {
+  transform: translateX(3px);
+}
+
+.pill:disabled {
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.pill:disabled .pill__icon {
+  background: var(--text-muted);
+  transform: none;
+}
+
+.outline-word {
+  position: absolute;
+  top: calc(var(--space-section) - var(--text-outline) * 0.7);
+  left: var(--gutter);
+  z-index: -1;
+  color: transparent;
+  font-family: var(--font-display);
+  font-size: var(--text-outline);
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  -webkit-text-stroke: 1px var(--outline-word);
+}
+
+.outline-word--end {
+  right: var(--gutter);
+  left: auto;
+}
+
+.blob-fallback {
+  position: absolute;
+  z-index: -1;
+  aspect-ratio: 1;
+  border-radius: 58% 42% 55% 45% / 46% 60% 40% 54%;
+  background:
+    radial-gradient(circle at 70% 75%, var(--orange), transparent 32%),
+    radial-gradient(circle at 30% 30%, var(--magenta), transparent 55%),
+    radial-gradient(circle at 65% 40%, var(--blue), transparent 60%), var(--purple-600);
+  box-shadow: 0 40px 120px rgb(124 58 237 / 45%);
+}
+
+.blob-fallback--hero {
+  top: 14%;
+  right: 4%;
+  width: clamp(16rem, 42vw, 40rem);
+}
+
+.blob-fallback--about {
+  top: 18%;
+  left: -14%;
+  width: clamp(18rem, 42vw, 40rem);
+  opacity: 0.8;
+}
+
+@media (max-width: 40rem) {
+  .blob-fallback--hero {
+    top: calc(var(--nav-height) + var(--space-6));
+    right: -12%;
+    width: 72vw;
+  }
+
+  .blob-fallback--about {
+    top: var(--space-8);
+    width: 85vw;
+  }
+}
+
+.socials {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  transition: color var(--duration-fast);
+}
+
+.socials a:hover {
+  color: var(--purple-400);
+}
+
+.scroll-cue {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 6rem;
+  height: 6rem;
+}
+
+.scroll-cue__ring {
+  position: absolute;
+  inset: 0;
+  fill: var(--text-muted);
+  font-size: 8.4px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-cue__ring {
+    animation: spin var(--duration-spin) linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.portrait {
+  width: 100%;
+  max-width: 28rem;
+  aspect-ratio: 1;
+  margin-inline: auto;
+  background-image: radial-gradient(circle, var(--purple-600) 1.5px, transparent 2px);
+  background-size: 12px 12px;
+  mask-image: radial-gradient(circle, black 35%, transparent 70%);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-6);
+}
+
+.facts li {
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--line);
+  font-size: var(--text-sm);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.tags li {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.areas li {
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--line);
+  font-size: var(--text-lg);
+}
+
+.skeleton {
+  height: 11rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
