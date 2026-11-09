@@ -1,0 +1,58 @@
+:root {
+  color-scheme: dark;
+
+  --bg: #05020a;
+  --glow: #2a0a4a;
+  --surface: #120b1c;
+  --surface-raised: #38333f;
+  --line: rgb(192 132 252 / 18%);
+  --outline-word: rgb(203 190 224 / 16%);
+
+  --purple-600: #7c3aed;
+  --purple-400: #c084fc;
+  --magenta: #f0409c;
+  --blue: #4f7cff;
+  --orange: #ffae7a;
+
+  --text: #f6f2fb;
+  --text-muted: #b9aecb;
+  --danger: #ff8fa3;
+
+  --font-display: 'Michroma', 'Orbitron', sans-serif;
+  --font-body: 'Montserrat', system-ui, sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --text-lg: clamp(1.25rem, 1.1rem + 0.7vw, 1.75rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.4vw, 2.5rem);
+  --text-hero: clamp(2.5rem, 6.4vw, 6rem);
+  --text-outline: clamp(2.75rem, 10.5vw, 12rem);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-section: clamp(5rem, 12vw, 10rem);
+  --gutter: clamp(1rem, 6vw, 6rem);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-pill: 999px;
+
+  --shadow-raised: 0 12px 32px rgb(0 0 0 / 45%);
+
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-spin: 14s;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --nav-height: 3.5rem;
+  --content-width: 76rem;
+  --measure: 68ch;
+}
