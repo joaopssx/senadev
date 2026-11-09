@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { validateEntry } from '../functions/api/_lib/validate'
+import { validateEntry } from '../api/_lib/validate'
 
 const valid = { name: 'Ana', message: 'Nice site', token: 'abc', website: '' }
 

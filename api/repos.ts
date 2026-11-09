@@ -1,8 +1,4 @@
-import type { Repo } from '../../src/types'
-
-interface Env {
-  GITHUB_TOKEN?: string
-}
+import type { Repo } from '../src/types.js'
 
 interface GithubRepo {
   name: string
@@ -36,27 +32,18 @@ function toRepos(repos: GithubRepo[]): Repo[] {
     }))
 }
 
-async function fetchGithubRepos(token: string | undefined): Promise<Response> {
-  return fetch(GITHUB_REPOS_URL, {
+export async function GET(): Promise<Response> {
+  const token = process.env.GITHUB_TOKEN
+  const github = await fetch(GITHUB_REPOS_URL, {
     headers: {
       Accept: 'application/vnd.github+json',
       'User-Agent': 'senadev-site',
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
   })
-}
-
-export const onRequestGet: PagesFunction<Env> = async (context) => {
-  const cacheKey = new Request(context.request.url)
-  const cached = await caches.default.match(cacheKey)
-  if (cached) return cached
-
-  const github = await fetchGithubRepos(context.env.GITHUB_TOKEN)
   if (!github.ok) return Response.json({ error: 'github_unavailable' }, { status: 502 })
 
-  const response = Response.json(toRepos(await github.json<GithubRepo[]>()), {
-    headers: { 'Cache-Control': `public, max-age=${CACHE_SECONDS}` },
+  return Response.json(toRepos((await github.json()) as GithubRepo[]), {
+    headers: { 'Cache-Control': `public, s-maxage=${CACHE_SECONDS}` },
   })
-  context.waitUntil(caches.default.put(cacheKey, response.clone()))
-  return response
 }

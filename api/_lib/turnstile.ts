@@ -7,6 +7,6 @@ export async function verifyTurnstile(token: string, secret: string, ip: string)
     body: JSON.stringify({ secret, response: token, remoteip: ip }),
   })
   if (!response.ok) return false
-  const result = await response.json<{ success: boolean }>()
+  const result = (await response.json()) as { success: boolean }
   return result.success
 }

@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit && tsc --noEmit -p scripts && tsc --noEmit -p functions",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p scripts && tsc --noEmit -p api",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
@@ -15,7 +15,6 @@
     "dots": "node scripts/make-dots.ts"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "5.20261109.1",
     "@commitlint/cli": "21.2.4",
     "@commitlint/config-conventional": "21.2.4",
     "@eslint/js": "10.0.1",
@@ -29,8 +28,7 @@
     "typescript": "6.0.3",
     "typescript-eslint": "8.72.1",
     "vite": "8.3.7",
-    "vitest": "5.1.0",
-    "wrangler": "4.159.0"
+    "vitest": "5.1.0"
   },
   "lint-staged": {
     "*.{ts,js}": [
@@ -40,6 +38,7 @@
     "*.{json,md,yml,yaml,css,html}": "prettier --write"
   },
   "dependencies": {
+    "@neondatabase/serverless": "1.2.0",
     "three": "0.187.0"
   }
 }

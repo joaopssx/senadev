@@ -1,10 +1,10 @@
 CREATE TABLE guestbook (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   name TEXT NOT NULL,
   message TEXT NOT NULL,
-  created_at TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   ip_hash TEXT NOT NULL,
-  hidden INTEGER NOT NULL DEFAULT 0 CHECK (hidden IN (0, 1))
+  hidden SMALLINT NOT NULL DEFAULT 0 CHECK (hidden IN (0, 1))
 );
 
 CREATE INDEX idx_guestbook_created_at ON guestbook (created_at DESC);
