@@ -50,6 +50,8 @@
   --duration-fast: 150ms;
   --duration-base: 300ms;
   --duration-spin: 14s;
+  --duration-reveal: 900ms;
+  --duration-glow: 24s;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
   --nav-height: 3.5rem;
