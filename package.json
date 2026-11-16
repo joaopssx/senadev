@@ -38,7 +38,7 @@
     "*.{json,md,yml,yaml,css,html}": "prettier --write"
   },
   "dependencies": {
-    "@neondatabase/serverless": "1.2.0",
+    "@neondatabase/serverless": "1.2.1",
     "three": "0.187.0"
   }
 }
